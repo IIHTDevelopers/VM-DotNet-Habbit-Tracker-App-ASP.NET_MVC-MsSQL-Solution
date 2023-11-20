@@ -1,0 +1,272 @@
+﻿
+using HabitTrackerApp.DAL;
+using HabitTrackerApp.DAL.Interface;
+using HabitTrackerApp.DAL.Repository;
+using HabitTrackerApp.Models;
+using Moq;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Xunit;
+using Xunit.Abstractions;
+
+namespace HabitTrackerApp.Tests.TestCases
+{
+    public class BoundaryTests
+    {
+        private readonly ITestOutputHelper _output;
+        private readonly IHabitTrackerInterface _habitTrackerService;
+        public readonly Mock<IHabitTrackerRepository> habittrackerservice = new Mock<IHabitTrackerRepository>();
+        private readonly Habit _Habit;
+        private readonly IEnumerable<Habit> HabitList;
+
+        private static string type = "Boundary";
+
+        public BoundaryTests(ITestOutputHelper output)
+        {
+            _habitTrackerService = new HabitTrackerService(habittrackerservice.Object);
+            _output = output;
+            _Habit = new Habit
+            {
+                 Id = 1,
+                Date = DateTime.Now,
+                HabitName = "Exercise",
+                IsCompleted = true,
+                Notes = "30 minutes of jogging in the park."
+            };
+            HabitList = new List<Habit>
+        {
+            new Habit
+            {
+                Id = 1,
+                Date = DateTime.Now,
+                HabitName = "Exercise",
+                IsCompleted = true,
+                Notes = "30 minutes of jogging in the park."
+            },
+            new Habit
+            {
+                Id = 2,
+                Date = DateTime.Now,
+                HabitName = "Exercise",
+                IsCompleted = true,
+                Notes = "30 minutes of jogging in the park."
+            },
+        };
+
+        }
+
+        [Fact]
+        public async Task<bool> Testfor_Id_NotNull()
+        {
+            //Arrange
+            var res = false;
+            string testName; string status;
+            testName = CallAPI.GetCurrentMethodName();
+            int id = 1;
+
+            //Action
+            try
+            {
+                habittrackerservice.Setup(repos => repos.GetHabitByID(_Habit.Id)).Returns(_Habit);
+                var result = _habitTrackerService.GetHabitByID(_Habit.Id);
+
+                //Assertion
+                if (result!= null)
+                {
+                    res = true;
+                }
+            }
+            catch (Exception)
+            {
+                //Assert
+                status = Convert.ToString(res);
+                _output.WriteLine(testName + ":Failed");
+                await CallAPI.saveTestResult(testName, status, type);
+                return false;
+            }
+            status = Convert.ToString(res);
+            if (res == true)
+            {
+                _output.WriteLine(testName + ":Passed");
+            }
+            else
+            {
+                _output.WriteLine(testName + ":Failed");
+            }
+            await CallAPI.saveTestResult(testName, status, type);
+            return res;
+        }
+
+        [Fact]
+        public async Task<bool> Testfor_Date_NotNull()
+        {
+            //Arrange
+            var res = false;
+            string testName; string status;
+            testName = CallAPI.GetCurrentMethodName();
+            int id = 1;
+
+            //Action
+            try
+            {
+                habittrackerservice.Setup(repos => repos.GetHabitByID(_Habit.Id)).Returns(_Habit);
+                var result = _habitTrackerService.GetHabitByID(_Habit.Id);
+
+                //Assertion
+                if (result!= null)
+                {
+                    res = true;
+                }
+            }
+            catch (Exception)
+            {
+                //Assert
+                status = Convert.ToString(res);
+                _output.WriteLine(testName + ":Failed");
+                await CallAPI.saveTestResult(testName, status, type);
+                return false;
+            }
+            status = Convert.ToString(res);
+            if (res == true)
+            {
+                _output.WriteLine(testName + ":Passed");
+            }
+            else
+            {
+                _output.WriteLine(testName + ":Failed");
+            }
+            await CallAPI.saveTestResult(testName, status, type);
+            return res;
+        }
+
+        [Fact]
+        public async Task<bool> Testfor_HabitName_NotNull()
+        {
+            //Arrange
+            var res = false;
+            string testName; string status;
+            testName = CallAPI.GetCurrentMethodName();
+            int id = 1;
+
+            //Action
+            try
+            {
+                habittrackerservice.Setup(repos => repos.GetHabitByID(_Habit.Id)).Returns(_Habit);
+                var result = _habitTrackerService.GetHabitByID(_Habit.Id);
+
+                //Assertion
+                if (result!=null)
+                {
+                    res = true;
+                }
+            }
+            catch (Exception)
+            {
+                //Assert
+                status = Convert.ToString(res);
+                _output.WriteLine(testName + ":Failed");
+                await CallAPI.saveTestResult(testName, status, type);
+                return false;
+            }
+            status = Convert.ToString(res);
+            if (res == true)
+            {
+                _output.WriteLine(testName + ":Passed");
+            }
+            else
+            {
+                _output.WriteLine(testName + ":Failed");
+            }
+            await CallAPI.saveTestResult(testName, status, type);
+            return res;
+        }
+
+        [Fact]
+        public async Task<bool> Testfor_IsCompleted_NotNull()
+        {
+            //Arrange
+            var res = false;
+            string testName; string status;
+            testName = CallAPI.GetCurrentMethodName();
+            int id = 1;
+
+            //Action
+            try
+            {
+                habittrackerservice.Setup(repos => repos.GetHabitByID(_Habit.Id)).Returns(_Habit);
+                var result = _habitTrackerService.GetHabitByID(_Habit.Id);
+               
+
+                //Assertion
+                if (result!= null)
+                {
+                    res = true;
+                }
+            }
+            catch (Exception)
+            {
+                //Assert
+                status = Convert.ToString(res);
+                _output.WriteLine(testName + ":Failed");
+                await CallAPI.saveTestResult(testName, status, type);
+                return false;
+            }
+            status = Convert.ToString(res);
+            if (res == true)
+            {
+                _output.WriteLine(testName + ":Passed");
+            }
+            else
+            {
+                _output.WriteLine(testName + ":Failed");
+            }
+            await CallAPI.saveTestResult(testName, status, type);
+            return res;
+        }
+
+        [Fact]
+        public async Task<bool> Testfor_Notes_NotNull()
+        {
+            //Arrange
+            var res = false;
+            string testName; string status;
+            testName = CallAPI.GetCurrentMethodName();
+            int id = 1;
+
+            //Action
+            try
+            {
+                habittrackerservice.Setup(repos => repos.GetHabitByID(_Habit.Id)).Returns(_Habit);
+                var result = _habitTrackerService.GetHabitByID(_Habit.Id);
+
+
+                //Assertion
+                if (result != null)
+                {
+                    res = true;
+                }
+            }
+            catch (Exception)
+            {
+                //Assert
+                status = Convert.ToString(res);
+                _output.WriteLine(testName + ":Failed");
+                await CallAPI.saveTestResult(testName, status, type);
+                return false;
+            }
+            status = Convert.ToString(res);
+            if (res == true)
+            {
+                _output.WriteLine(testName + ":Passed");
+            }
+            else
+            {
+                _output.WriteLine(testName + ":Failed");
+            }
+            await CallAPI.saveTestResult(testName, status, type);
+            return res;
+        }
+
+    }
+}
